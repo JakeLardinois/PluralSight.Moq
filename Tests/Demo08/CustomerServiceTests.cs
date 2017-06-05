@@ -10,7 +10,7 @@ namespace PluralSight.Moq.Tests.Demo08
         public class When_creating_a_customer_which_has_an_invalid_address
         {
             [Test]
-            [ExpectedException(typeof(CustomerCreationException))]
+            //[ExpectedException(typeof(CustomerCreationException))]
             public void an_exception_should_be_raised()
             {
                 //Arrange
@@ -26,9 +26,11 @@ namespace PluralSight.Moq.Tests.Demo08
                     mockCustomerAddressFactory.Object);
 
                 //Act
-                customerService.Create(new CustomerToCreateDto());
+                //customerService.Create(new CustomerToCreateDto());
 
                 //Assert
+                Assert.That(() => customerService.Create(new CustomerToCreateDto()),
+                Throws.TypeOf<CustomerCreationException>());
             }
         }
     }

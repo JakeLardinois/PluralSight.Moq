@@ -11,7 +11,7 @@ namespace PluralSight.Moq.Tests.Demo03
         {
             //this shows how setting the return value will change the execution flow
             [Test]
-            [ExpectedException(typeof(InvalidCustomerMailingAddressException))]
+            //[ExpectedException(typeof(InvalidCustomerMailingAddressException))]
             public void an_exception_should_be_thrown_if_the_address_is_not_created()
             {
                 //Arrange
@@ -29,9 +29,11 @@ namespace PluralSight.Moq.Tests.Demo03
                     mockCustomerRepository.Object);
                 
                 //Act
-                customerService.Create(customerToCreateDto);
+                //customerService.Create(customerToCreateDto);
 
                 //Assert
+                Assert.That(() => customerService.Create(customerToCreateDto),
+                Throws.TypeOf<InvalidCustomerMailingAddressException>());
             }
 
             [Test]
