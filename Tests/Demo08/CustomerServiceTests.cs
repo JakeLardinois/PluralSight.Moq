@@ -17,6 +17,9 @@ namespace PluralSight.Moq.Tests.Demo08
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
                 var mockCustomerAddressFactory = new Mock<ICustomerAddressFactory>();
 
+                mockCustomerAddressFactory
+                    .Setup(x => x.From(It.IsAny<CustomerToCreateDto>()))
+                    .Throws<InvalidCustomerAddressException>();
 
                 var customerService = new CustomerService(
                     mockCustomerRepository.Object, 

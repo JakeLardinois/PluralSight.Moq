@@ -22,7 +22,8 @@ namespace PluralSight.Moq.Tests.Demo09
                 customerService.Create(new CustomerToCreateDto());
 
                 //Assert
-
+                mockCustomerRepository.VerifySet(
+                    x=>x.LocalTimeZone = It.IsAny<string>());
             }
         }
     }

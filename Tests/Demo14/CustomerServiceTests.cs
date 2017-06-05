@@ -14,7 +14,7 @@ namespace PluralSight.Moq.Tests.Demo14
             {
                 //Arrange
                 var mockCustomerRepository = 
-                    new Mock<ICustomerRepository>();
+                    new Mock<ICustomerRepository>(MockBehavior.Strict);
 
                 mockCustomerRepository.Setup(x => x.Save(It.IsAny<Customer>()));
 

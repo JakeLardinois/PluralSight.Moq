@@ -23,6 +23,11 @@ namespace PluralSight.Moq.Tests.Demo07
                                                LastName = "Builder"
                                            };
 
+                mockCustomerStatusFactory.Setup(
+                    x => x.CreateFrom(
+                        It.Is<CustomerToCreateDto>(
+                            y => y.DesiredStatus == CustomerStatus.Platinum)))
+                    .Returns(CustomerStatus.Platinum);
 
 
                 var customerService = new CustomerService(

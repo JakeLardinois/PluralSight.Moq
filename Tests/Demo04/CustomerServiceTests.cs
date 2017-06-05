@@ -16,6 +16,10 @@ namespace PluralSight.Moq.Tests.Demo04
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
                 var mockMailingAddressFactory = new Mock<IMailingAddressFactory>();
 
+                var mailingAddress = new MailingAddress {Country = "Canada"};
+                mockMailingAddressFactory
+                    .Setup(x => x.TryParse(It.IsAny<string>(), out mailingAddress))
+                    .Returns(true);
 
                 var customerService = new CustomerService(
                     mockCustomerRepository.Object, mockMailingAddressFactory.Object);

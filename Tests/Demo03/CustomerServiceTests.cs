@@ -20,6 +20,9 @@ namespace PluralSight.Moq.Tests.Demo03
                 var mockAddressBuilder = new Mock<ICustomerAddressBuilder>();
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
 
+                mockAddressBuilder
+                    .Setup(x => x.From(It.IsAny<CustomerToCreateDto>()))
+                    .Returns(() => null);
 
                 var customerService = new CustomerService(
                     mockAddressBuilder.Object, 
@@ -38,6 +41,10 @@ namespace PluralSight.Moq.Tests.Demo03
                 var customerToCreateDto = new CustomerToCreateDto { FirstName = "Bob", LastName = "Builder" };
                 var mockAddressBuilder = new Mock<ICustomerAddressBuilder>();
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
+
+                mockAddressBuilder
+                    .Setup(x => x.From(It.IsAny<CustomerToCreateDto>()))
+                    .Returns(() => new Address());
 
                 var customerService = new CustomerService(mockAddressBuilder.Object, mockCustomerRepository.Object);
 

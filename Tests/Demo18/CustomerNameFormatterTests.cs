@@ -16,7 +16,10 @@ namespace PluralSight.Moq.Tests.Demo18
                 //Arrange
                 var mockCustomerNameFormatter = new Mock<CustomerNameFormatter>();
 
-
+                mockCustomerNameFormatter.Protected()
+                    .Setup<string>("ParseBadWordsFrom", ItExpr.IsAny<string>())
+                    .Returns("asdf")
+                    .Verifiable();
 
                 //Act
                 mockCustomerNameFormatter.Object.From(new Customer());

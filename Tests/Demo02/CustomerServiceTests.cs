@@ -31,10 +31,15 @@ namespace PluralSight.Moq.Tests.Demo02
                             }
                     };
 
+                var mockCustomerRepository = new Mock<ICustomerRepository>();
+
+                var customerService = new CustomerService(mockCustomerRepository.Object);
                 //Act
+                customerService.Create(listOfCustomerDtos);
 
                 //Assert
-
+                mockCustomerRepository.Verify(x=>x.Save(It.IsAny<Customer>()),
+                    Times.Exactly(2));
             }
         }
     }

@@ -19,7 +19,9 @@ namespace PluralSight.Moq.Tests.Demo15
                 mockNameFormatter.Object.From(new Customer("Bob", "SAPBuilder"));
 
                 //Assert
-
+                mockNameFormatter.Verify(
+                    x=>x.ParseBadWordsFrom(It.IsAny<string>()),
+                    Times.Exactly(2));
             }
         }
     }

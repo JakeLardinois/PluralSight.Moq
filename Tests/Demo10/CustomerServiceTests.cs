@@ -16,6 +16,7 @@ namespace PluralSight.Moq.Tests.Demo10
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
                 var mockApplicationSettings = new Mock<IApplicationSettings>();
 
+                mockApplicationSettings.Setup(x => x.WorkstationId).Returns(123);
                 
                 var customerService = new CustomerService(
                     mockCustomerRepository.Object, 
@@ -25,7 +26,7 @@ namespace PluralSight.Moq.Tests.Demo10
                 customerService.Create(new CustomerToCreateDto());
 
                 //Assert
-
+                mockApplicationSettings.VerifyGet(x=>x.WorkstationId);
             }
         }
     }

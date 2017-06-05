@@ -16,6 +16,9 @@ namespace PluralSight.Moq.Tests.Demo11
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
                 var mockApplicationSettings = new Mock<IApplicationSettings>();
 
+                mockApplicationSettings.Setup(
+                    x => x.SystemConfiguration.AuditingInformation.WorkstationId)
+                    .Returns(123);
                 
                 var customerService = new CustomerService(mockCustomerRepository.Object, mockApplicationSettings.Object);
 

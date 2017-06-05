@@ -20,7 +20,9 @@ namespace PluralSight.Moq.Tests.Demo13
                     mockCustomerRepository.Object, mockMailingRepository.Object);
 
                 //Act
-
+                mockCustomerRepository.Raise(
+                    x=>x.NotifySalesTeam += null,
+                    new NotifySalesTeamEventArgs("jim"));
 
                 //Assert
                 mockMailingRepository.Verify(

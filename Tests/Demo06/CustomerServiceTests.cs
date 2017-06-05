@@ -34,7 +34,13 @@ namespace PluralSight.Moq.Tests.Demo06
                 customerService.Create(customerToCreateDto);
 
                 //Assert
-
+                mockFullNameBuilder.Verify(x=>x.From(
+                    It.Is<string>(
+                        fn=>fn.Equals(customerToCreateDto.FirstName,
+                            StringComparison.InvariantCultureIgnoreCase)),
+                    It.Is<string>(
+                        fn=>fn.Equals(customerToCreateDto.LastName,
+                            StringComparison.InvariantCultureIgnoreCase))));
             }
         }
     }

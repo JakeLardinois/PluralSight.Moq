@@ -27,8 +27,10 @@ namespace PluralSight.Moq.Tests.Demo16
                 var mock = Mock.Get(addressFormatter);
 
                 //Act
+                customerService.Create(new CustomerToCreateDto());
 
                 //Assert
+                mock.Verify(x=>x.From(It.IsAny<CustomerToCreateDto>()));
             }
         }
     }
