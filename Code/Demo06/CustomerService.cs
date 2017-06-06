@@ -16,7 +16,8 @@
         public void Create(CustomerToCreateDto customerToCreateDto)
         {
             var fullName = _customerFullName.From(
-                customerToCreateDto.FirstName, 
+                customerToCreateDto.FirstName,
+                //"Foo",// If this was passed in as the first parameter, it would cause the test to fail.
                 customerToCreateDto.LastName);
 
             var customer = new Customer(fullName);
