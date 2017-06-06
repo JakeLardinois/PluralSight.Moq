@@ -23,7 +23,7 @@ namespace PluralSight.Moq.Code.Demo05
                     customerToCreateDto.FirstName, 
                     customerToCreateDto.LastName);
 
-                customer.Id = _idFactory.Create();
+                customer.Id = _idFactory.Create(); //unique Id is assigned
                 
                 _customerRepository.Save(customer);
             }
