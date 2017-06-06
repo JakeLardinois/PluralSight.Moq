@@ -14,7 +14,8 @@ namespace PluralSight.Moq.Tests.Demo02
             [Test]
             public void the_customer_repository_should_be_called_once_per_customer()
             {
-                //Arrange
+                /**Arrange**/
+
                 var listOfCustomerDtos = new List<CustomerToCreateDto>
                     {
                         new CustomerToCreateDto
@@ -34,12 +35,17 @@ namespace PluralSight.Moq.Tests.Demo02
                 var mockCustomerRepository = new Mock<ICustomerRepository>();
 
                 var customerService = new CustomerService(mockCustomerRepository.Object);
-                //Act
+
+                /**Act**/
+
                 customerService.Create(listOfCustomerDtos);
 
-                //Assert
+                /**Assert**/
+
+                //Checks that the Save method of the repository has been called the exact number of times 
+                //of the count of the listOfCustomerDtos.
                 mockCustomerRepository.Verify(x=>x.Save(It.IsAny<Customer>()),
-                    Times.Exactly(2));
+                    Times.Exactly(listOfCustomerDtos.Count));
             }
         }
     }
