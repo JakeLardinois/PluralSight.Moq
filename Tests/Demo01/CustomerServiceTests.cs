@@ -14,17 +14,22 @@ namespace PluralSight.Moq.Tests.Demo01
             [Test]
             public void the_repository_save_should_be_called()
             {
-                //Arrange
+                /**Arrange**/
+
                 var mockRepository = new Mock<ICustomerRepository>();
 
-                mockRepository.Setup(x => x.Save(It.IsAny<Customer>()));
+                //Checks if the .Save method is called by the repository on any customer
+                mockRepository.Setup(x => x.Save(It.IsAny<Customer>()));  
 
                 var customerService = new CustomerService(mockRepository.Object);
 
-                //Act
+                /**Act**/
+
+                //The create method of the Service should call the Save method on the Repository.
                 customerService.Create(new CustomerToCreateDto());
 
-                //Assert
+                /**Assert**/
+
                 mockRepository.VerifyAll();
             }            
         }
