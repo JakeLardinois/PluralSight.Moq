@@ -18,11 +18,11 @@
 
              MailingAddress mailingAddress;
              var mailingAddressSuccessfullyCreated = 
-                 _mailingAddressFactory.TryParse(
+                 _mailingAddressFactory.TryParse( //A TryParse method that takes in a string and returns a MailingAddress object
                     customerToCreate.Address, 
                     out mailingAddress);
 
-             if (mailingAddress == null)
+             if (mailingAddress == null) //Note that we could use the mailingAddressSuccessfullyCreated value as well...
              {
                  throw new InvalidMailingAddressException();
              }
