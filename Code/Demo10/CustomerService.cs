@@ -15,7 +15,8 @@
          {
              var customer = new Customer(customerToCreate.Name);
 
-             var workstationId = _applicationSettings.WorkstationId;
+             var workstationId = _applicationSettings.WorkstationId; //We are testing that this "Getter" is called..
+            //int? workstationId = 123; // this would cause the test to fail
 
              if (!workstationId.HasValue)
              {
