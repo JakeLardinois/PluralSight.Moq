@@ -24,10 +24,16 @@ namespace PluralSight.Moq.Tests.Demo13
 
                 /**Act**/
 
+                //mockCustomerRepository.Raise( //raises an event
+                //    x=>x.NotifySalesTeam += null,  //we want to raise the NotifySalesTeam event (null could be some type of handler; object property?)
+                //    new NotifySalesTeamEventArgs("jim")); //pass in the event arguments. Note the custom implementation of EventArgs, so that the constructor takes in a parameter
+                //                                          //which sets a Name property on NotifySalesTeamEventArgs...
+
+                //Using delegate
                 mockCustomerRepository.Raise( //raises an event
-                    x=>x.NotifySalesTeam += null,  //we want to raise the NotifySalesTeam event (null could be some type of handler; object property?)
-                    new NotifySalesTeamEventArgs("jim")); //pass in the event arguments. Note the custom implementation of EventArgs, so that the constructor takes in a parameter
-                                                          //which sets a Name property on NotifySalesTeamEventArgs...
+                    x => x.NotifySalesTeam += null,
+                    "jim", false); //Takes a parameter array of objects as arguments
+                                                          
 
                 /**Assert**/
 
