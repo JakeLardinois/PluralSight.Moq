@@ -12,16 +12,19 @@ namespace PluralSight.Moq.Tests.Demo15
             [Test]
             public void bad_words_should_be_stripped_from_the_first_and_last_names()
             {
-                //Arrange
+                /**Arrange**/
+
                 var mockNameFormatter = new Mock<CustomerNameFormatter>();
 
-                //Act
+                /**Act**/
+
                 mockNameFormatter.Object.From(new Customer("Bob", "SAPBuilder"));
 
-                //Assert
+                /**Assert**/
+
                 mockNameFormatter.Verify(
-                    x=>x.ParseBadWordsFrom(It.IsAny<string>()),
-                    Times.Exactly(2));
+                    x=>x.ParseBadWordsFrom(It.IsAny<string>()), //ParseBadWordsFrom can be passed any string
+                    Times.Exactly(2)); //Since the ParseBadWordsFrom method is called 2 times (once for firstname and once for last name
             }
         }
     }
